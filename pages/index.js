@@ -1,9 +1,22 @@
-import Layout from '@/components/Layout';
-import Grid from '@/components/Grid';
+import Layout from "@/components/Layout";
+import Grid from "@/components/Grid";
+// Import the generated Prisma client
+import { PrismaClient } from "@prisma/client";
+// Instantiate it
+const prisma = new PrismaClient();
 
-import homes from 'data.json';
+export async function getServerSideProps() {
+  // Get all homes
+  const homes = await prisma.home.findMany();
+  return {
+    props: {
+      // props for the Home component
+      homes: JSON.parse(JSON.stringify(homes)),
+    },
+  };
+}
 
-export default function Home() {
+export default function Home({ homes = [] }) {
   return (
     <Layout>
       <h1 className="text-xl font-medium text-gray-800">

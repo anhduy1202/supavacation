@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { HeartIcon } from '@heroicons/react/solid';
@@ -14,8 +13,8 @@ const Card = ({
   favorite = false,
   onClickFavorite = () => null,
 }) => (
-  <Link href={`/homes/${id}`}>
-    <a className="block w-full">
+  <a href={`/homes/${id}`}>
+    <div className="block w-full">
       <div className="relative">
         <div className="bg-gray-200 rounded-lg shadow overflow-hidden aspect-w-16 aspect-h-9">
           {image ? (
@@ -68,8 +67,8 @@ const Card = ({
         }).format(price ?? 0)}{' '}
         <span className="text-gray-500">/night</span>
       </p>
-    </a>
-  </Link>
+    </div>
+  </a>
 );
 
 Card.propTypes = {
